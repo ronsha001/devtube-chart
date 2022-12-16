@@ -60,7 +60,7 @@ ingress:
   enabled: true
 
   certificate:
-    enabled: true
+    enabled: false
     email: ronsh012@gmail.com
     host: ronsharabi.ddns.net
 
