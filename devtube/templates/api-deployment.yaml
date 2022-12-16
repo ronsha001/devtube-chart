@@ -17,6 +17,21 @@ spec:
       labels:
         app: {{ include "devtube.fullname" . }}-api
     spec:
+      initContainers:
+      - name: wait-for-mongo
+        image: mongo
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: credentials
+        args:
+        - /bin/bash
+        - -c
+        - >
+          until mongosh "mongodb://{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless:27017/?replicaSet=rs0" --eval "print(\"waited for connection\")"
+            do
+              sleep 10
+            done
       containers:
         - name: devtube-api
           image: "{{ .Values.api.image }}:{{ .Values.api.image_tag }}"
