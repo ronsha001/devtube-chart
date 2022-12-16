@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "devtube.fullname" . }}-api
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "devtube.fullname" . }}-api
+spec:
+  {{- if .Values.api.autoscaling.enabled }}
+  replicas: {{ .Values.api.autoscaling.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "devtube.fullname" . }}-api
+  template:
+    metadata:
+      labels:
+        app: {{ include "devtube.fullname" . }}-api
+    spec:
+      containers:
+        - name: devtube-api
+          image: "{{ .Values.api.image }}:{{ .Values.api.image_tag }}"
+          ports:
+            - containerPort: {{ .Values.api.port }}
+          envFrom:
+            - secretRef:
+                name: credentials
+          env:
+            - name: MONGODB_URI
+              value: mongodb://$(mongo_user):$(mongo_pw)@{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-1.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-2.{{ .Release.Name }}-mongodb-headless:27017/?replicaSet=rs0
+            - name: SECRET_JWT_KEY
+              value: $(jwt_key)
+          resources:
+            requests:
+              memory: {{ .Values.api.resources.requests.memory }}
+              cpu: {{ .Values.api.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.api.resources.limits.memory }}
+              cpu: {{ .Values.api.resources.limits.cpu }}
+

@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
+
 
 image:
   repository: nginx
@@ -40,33 +40,6 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
-  enabled: false
-  className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
-resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
 
 autoscaling:
   enabled: false
@@ -80,3 +53,56 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+namespace: devtube
+
+ingress:
+  enabled: true
+
+  certificate:
+    enabled: true
+    email: ronsh012@gmail.com
+    host: ronsharabi.ddns.net
+
+mongodb:
+  auth:
+    rootUser: "Username"
+    rootPassword: "Password"
+  architecture: replicaset
+  useStatefulSet: true
+  replicaCount: 3
+
+api:
+  ingress:
+    enabled: true
+  image: devtube.azurecr.io/devtube-api
+  image_tag: 1.0.0
+  jwt_key: "example"
+  port: 5000
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 250m
+    limits:
+      memory: 128Mi
+      cpu: 500m
+  autoscaling:
+    enabled: false
+    replicaCount: 1
+
+client:
+  ingress:
+    enabled: false
+  image: devtube.azurecr.io/devtube-client
+  image_tag: 1.0.0
+  port: 3000
+  resources:
+    requests:
+      memory: 64Mi
+      cpu: 250m
+    limits:
+      memory: 128Mi
+      cpu: 500m
+  autoscaling:
+    enabled: false
+    replicaCount: 1
