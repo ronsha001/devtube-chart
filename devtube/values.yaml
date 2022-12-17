@@ -49,7 +49,7 @@ ingress:
   certificate:
     enabled: false
     email: ronsh012@gmail.com
-    host: ronsharabi.ddns.net
+    host: devtube.ddns.net
 mongodb:
   auth:
     rootUser: "Username"
