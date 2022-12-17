@@ -48,7 +48,7 @@ spec:
             - name: DANGEROUSLY_DISABLE_HOST_CHECK
               value: "true"
             - name: HOST
-              value: "{{ .Values.ingress.certificate.host }}"
+              value: "52.147.216.137"
           resources:
             requests:
               memory: {{ .Values.client.resources.requests.memory }}
