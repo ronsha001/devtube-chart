@@ -22,7 +22,7 @@ spec:
         image: giantswarm/tiny-tools:3.12
         imagePullPolicy: IfNotPresent
         args:
-        - /bin/bash
+        - /bin/sh
         - -c
         - >
           until curl {{ .Release.Name }}-api.{{ .Release.Name }}-api-svc "print(\"waited for connection\")"
