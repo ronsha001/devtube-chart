@@ -25,7 +25,7 @@ spec:
         - /bin/sh
         - -c
         - >
-          until curl {{ .Release.Name }}-api.{{ .Release.Name }}-api-svc "print(\"waited for connection\")"
+          until curl http://{{ .Release.Name }}-api.{{ .Release.Name }}-api-svc:{{ .Values.api.port }} "print(\"waited for connection\")"
             do
               sleep 10
             done
