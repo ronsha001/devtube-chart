@@ -49,6 +49,8 @@ spec:
               value: "true"
             - name: HOST
               value: "52.147.216.137"
+            - name: PORT
+              value: 3000
           resources:
             requests:
               memory: {{ .Values.client.resources.requests.memory }}
