@@ -45,6 +45,10 @@ spec:
               value: $(react-app-id)
             - name: GENERATE_SOURCEMAP
               value: "false"
+            - name: DANGEROUSLY_DISABLE_HOST_CHECK
+              value: "true"
+            - name: HOST
+              value: {{ .Values.certificate.host }}
           resources:
             requests:
               memory: {{ .Values.client.resources.requests.memory }}
