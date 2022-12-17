@@ -88,5 +88,5 @@ client:
       memory: 1000Mi
       cpu: 1000m
   autoscaling:
-    enabled: false
+    enabled: true
     replicaCount: 2
