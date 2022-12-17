@@ -72,8 +72,8 @@ api:
       memory: 1000Mi
       cpu: 1000m
   autoscaling:
-    enabled: false
-    replicaCount: 1
+    enabled: true
+    replicaCount: 2
 client:
   ingress:
     enabled: true
@@ -89,4 +89,4 @@ client:
       cpu: 1000m
   autoscaling:
     enabled: false
-    replicaCount: 1
+    replicaCount: 2
