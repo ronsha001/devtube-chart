@@ -45,6 +45,8 @@ spec:
               value: $(react-app-id)
             - name: GENERATE_SOURCEMAP
               value: "false"
+            - name: DANGEROUSLY_DISABLE_HOST_CHECK
+              value: "true"
             - name: HOST
               value: "0.0.0.0"
           resources:
