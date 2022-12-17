@@ -82,11 +82,11 @@ client:
   port: 3000
   resources:
     requests:
-      memory: 64Mi
-      cpu: 250m
-    limits:
-      memory: 128Mi
+      memory: 500Mi
       cpu: 500m
+    limits:
+      memory: 1000Mi
+      cpu: 1000m
   autoscaling:
     enabled: false
     replicaCount: 1
