@@ -25,7 +25,7 @@ spec:
         - /bin/sh
         - -c
         - >
-          until curl -I http://{{ .Release.Name }}-api.{{ .Release.Name }}-api-svc:{{ .Values.api.port }}
+          until curl -I {{ .Release.Name }}-api.{{ .Release.Name }}-api-svc:{{ .Values.api.port }}/api/videos/random
             do
               sleep 10
             done
