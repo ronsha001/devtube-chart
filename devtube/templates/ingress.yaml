@@ -21,15 +21,6 @@ spec:
   - host: {{ .Values.ingress.certificate.host }}
     http:
       paths:
-      {{- if .Values.client.ingress.enabled }}
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: {{ include "devtube.fullname" . }}-client-svc
-            port: 
-              number: {{ .Values.client.port }}
-      {{- end}}
       {{- if .Values.api.ingress.enabled }}
       - pathType: Prefix
         path: "/api"
@@ -38,5 +29,14 @@ spec:
             name: {{ include "devtube.fullname" . }}-api-svc
             port: 
               number: {{ .Values.api.port }}
+      {{- end}}
+      {{- if .Values.client.ingress.enabled }}
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: {{ include "devtube.fullname" . }}-client-svc
+            port: 
+              number: {{ .Values.client.port }}
       {{- end}}
 {{- end }}
