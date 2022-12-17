@@ -31,7 +31,6 @@ serviceAccount:
 # # readOnlyRootFilesystem: true
 # # runAsNonRoot: true
 # # runAsUser: 1000
-
 service:
   type: ClusterIP
   port: 80
@@ -91,3 +90,5 @@ client:
   autoscaling:
     enabled: false
     replicaCount: 1
+app:
+  image_tag: 1.0.0
