@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "devtube.fullname" . }}-client
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ include "devtube.fullname" . }}-client
+spec:
+  {{- if .Values.client.autoscaling.enabled }}
+  replicas: {{ .Values.client.autoscaling.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "devtube.fullname" . }}-client
+  template:
+    metadata:
+      labels:
+        app: {{ include "devtube.fullname" . }}-client
+    spec:
+      initContainers:
+      - name: wait-for-api
+        image: giantswarm/tiny-tools:3.12
+        imagePullPolicy: IfNotPresent
+        args:
+        - /bin/bash
+        - -c
+        - >
+          until curl {{ .Release.Name }}-api.{{ .Release.Name }}-api-svc "print(\"waited for connection\")"
+            do
+              sleep 10
+            done
+      containers:
+        - name: devtube-client
+          image: "{{ .Values.client.image }}:{{ .Values.client.image_tag }}"
+          ports:
+            - containerPort: {{ .Values.client.port }}
+          envFrom:
+            - secretRef:
+                name: secret-credentials
+          env:
+            - name: REACT_APP_apiKey
+              value: $(react-api-key)
+            - name: REACT_APP_authDomain
+              value: $(react-auth-domain)
+            - name: REACT_APP_projectId
+              value: $(react-project-id)
+            - name: REACT_APP_storageBucket
+              value: $(react-storage-bucket)
+            - name: REACT_APP_messagingSenderId
+              value: $(react-messaging-senderId)
+            - name: REACT_APP_appId
+              value: $(react-app-id)
+            - name: GENERATE_SOURCEMAP
+              value: "false"
+          resources:
+            requests:
+              memory: {{ .Values.client.resources.requests.memory }}
+              cpu: {{ .Values.client.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.client.resources.limits.memory }}
+              cpu: {{ .Values.client.resources.limits.cpu }}
+

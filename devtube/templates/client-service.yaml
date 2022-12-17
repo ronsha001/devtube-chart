@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "devtube.fullname" . }}-client-svc
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ include "devtube.fullname" . }}-client
+  {{- if .Values.client.ingress.enabled }}
+  type: ClusterIP
+  {{- else }}
+  type: LoadBalancer
+  {{- end}}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.client.port }}
+      targetPort: {{ .Values.client.port }}

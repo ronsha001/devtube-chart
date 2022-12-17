@@ -40,11 +40,13 @@ spec:
           envFrom:
             - secretRef:
                 name: credentials
+            - secretRef:
+                name: secret-credentials
           env:
             - name: MONGODB_URI
               value: mongodb://$(mongo_user):$(mongo_pw)@{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-1.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-2.{{ .Release.Name }}-mongodb-headless:27017/?replicaSet=rs0
             - name: SECRET_JWT_KEY
-              value: $(jwt_key)
+              value: $(jwt-key)
           resources:
             requests:
               memory: {{ .Values.api.resources.requests.memory }}
