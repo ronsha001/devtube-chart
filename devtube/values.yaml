@@ -9,11 +9,9 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -22,48 +20,37 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
-
 podAnnotations: {}
-
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
 securityContext: {}
-  # capabilities:
-  #   drop:
-  #   - ALL
-  # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
-  # runAsUser: 1000
+# capabilities:
+#   drop:
+#   - ALL
+# readOnlyRootFilesystem: true
+# runAsNonRoot: true
+# runAsUser: 1000
 
 service:
   type: ClusterIP
   port: 80
-
-
 autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
-
 namespace: devtube
-
 ingress:
   enabled: true
-
   certificate:
     enabled: false
     email: ronsh012@gmail.com
     host: ronsharabi.ddns.net
-
 mongodb:
   auth:
     rootUser: "Username"
@@ -71,12 +58,11 @@ mongodb:
   architecture: replicaset
   useStatefulSet: true
   replicaCount: 3
-
 api:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-api
-  image_tag: 1.0.0
+  image_tag: 1.0.3
   jwt_key: "example"
   port: 5000
   resources:
@@ -89,7 +75,6 @@ api:
   autoscaling:
     enabled: false
     replicaCount: 1
-
 client:
   ingress:
     enabled: false
