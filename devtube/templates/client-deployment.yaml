@@ -27,6 +27,7 @@ spec:
         - >
           until curl -I {{ .Release.Name }}-api.{{ .Release.Name }}-api-svc:{{ .Values.api.port }}/api/videos/random
             do
+              echo "Still waiting..."
               sleep 10
             done
       containers:
