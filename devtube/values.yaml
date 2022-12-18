@@ -51,9 +51,6 @@ ingress:
     email: ronsh0111@gmail.com
     host: devtube.ddns.net
 mongodb:
-  # auth:
-  #   rootUser: "Username"
-  #   rootPassword: "Password"
   architecture: replicaset
   useStatefulSet: true
   replicaCount: 3
