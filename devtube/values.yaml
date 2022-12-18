@@ -47,8 +47,8 @@ namespace: devtube
 ingress:
   enabled: true
   certificate:
-    enabled: false
-    email: ronsh012@gmail.com
+    enabled: true
+    email: ronsh0111@gmail.com
     host: devtube.ddns.net
 mongodb:
   auth:
