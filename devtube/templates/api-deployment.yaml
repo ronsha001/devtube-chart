@@ -21,9 +21,6 @@ spec:
       - name: wait-for-mongo
         image: mongo
         imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: credentials
         args:
         - /bin/bash
         - -c
