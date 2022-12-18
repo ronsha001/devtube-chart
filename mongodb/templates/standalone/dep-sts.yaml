@@ -211,10 +211,6 @@ spec:
               value: $(root-user)
             - name: MONGODB_ROOT_PASSWORD
               value: $(root-password)
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ include "mongodb.secretName" . }}
-              #     key: mongodb-root-password
             {{- end }}
             {{- if and .Values.metrics.enabled (not (empty .Values.metrics.username)) }}
             - name: MONGODB_METRICS_USERNAME
@@ -362,10 +358,6 @@ spec:
               value: $(root-user)
             - name: MONGODB_ROOT_PASSWORD
               value: $(root-password)
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ include "mongodb.secretName" . }}
-              #     key: mongodb-root-password
             {{- else }}
             - name: MONGODB_METRICS_USERNAME
               value: {{ .Values.metrics.username | quote }}

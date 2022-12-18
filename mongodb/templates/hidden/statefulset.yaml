@@ -264,10 +264,6 @@ spec:
               value: $(root-user)
             - name: MONGODB_ROOT_PASSWORD
               value: $(root-password)
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ include "mongodb.secretName" . }}
-              #     key: mongodb-root-password
             - name: MONGODB_REPLICA_SET_KEY
               valueFrom:
                 secretKeyRef:
@@ -423,10 +419,6 @@ spec:
               value: $(root-user)
             - name: MONGODB_ROOT_PASSWORD
               value: $(root-password)
-              # valueFrom:
-              #   secretKeyRef:
-              #     name: {{ include "mongodb.secretName" . }}
-              #     key: mongodb-root-password
             {{- else }}
             - name: MONGODB_METRICS_USERNAME
               value: {{ .Values.metrics.username | quote }}
