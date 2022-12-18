@@ -57,6 +57,13 @@ mongodb:
   architecture: replicaset
   useStatefulSet: true
   replicaCount: 3
+  resources:
+    requests:
+      cpu: 500m
+      memory: 500Mi
+    limits:
+      cpu: 1000m
+      memory: 1000Mi
 api:
   ingress:
     enabled: true
