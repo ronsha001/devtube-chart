@@ -15,7 +15,7 @@ spec:
     - {{ .Values.ingress.certificate.host }}
   # Change the secret name to ssl-cert-production 
   # for a valid, green certificate in your browser
-    secretName: {{ .Release.Name }}-ssl-cert-production
+    secretName: ssl-cert-production
   {{- end }}
   rules:
   - host: {{ .Values.ingress.certificate.host }}
