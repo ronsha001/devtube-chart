@@ -39,12 +39,10 @@ spec:
             - containerPort: {{ .Values.api.port }}
           envFrom:
             - secretRef:
-                name: credentials
-            - secretRef:
                 name: secret-credentials
           env:
             - name: MONGODB_URI
-              value: mongodb://$(mongo_user):$(mongo_pw)@{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-1.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-2.{{ .Release.Name }}-mongodb-headless:27017/?replicaSet=rs0
+              value: mongodb://$(root-user):$(root-password)@{{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-1.{{ .Release.Name }}-mongodb-headless:27017,{{ .Release.Name }}-mongodb-2.{{ .Release.Name }}-mongodb-headless:27017/?replicaSet=rs0
             - name: SECRET_JWT_KEY
               value: $(jwt-key)
           resources:
