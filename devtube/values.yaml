@@ -1,9 +1,6 @@
 # # Default values for devtube.
 # # This is a YAML-formatted file.
 # # Declare variables to be passed into your templates.
-
-
-
 # image:
 #   repository: nginx
 #   pullPolicy: IfNotPresent
@@ -65,7 +62,7 @@ api:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-api
-  image_tag: 1.0.3
+  image_tag: 1.0.8
   jwt_key: "example"
   port: 5000
   resources:
@@ -82,7 +79,7 @@ client:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-app
-  image_tag: 1.0.6
+  image_tag: 1.0.7
   port: 3000
   resources:
     requests:
