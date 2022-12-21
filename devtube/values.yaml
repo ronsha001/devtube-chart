@@ -62,7 +62,7 @@ api:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-api
-  image_tag: 1.0.8
+  image_tag: 1.1.1
   jwt_key: "example"
   port: 5000
   resources:
