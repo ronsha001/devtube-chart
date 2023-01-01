@@ -44,7 +44,7 @@ client:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-app
-  image_tag: 1.1.1
+  image_tag: 1.1.2
   port: 3000
   resources:
     requests:
