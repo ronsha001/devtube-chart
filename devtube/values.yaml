@@ -1,45 +1,12 @@
-# # Default values for devtube.
-# # This is a YAML-formatted file.
-# # Declare variables to be passed into your templates.
-# image:
-#   repository: nginx
-#   pullPolicy: IfNotPresent
-#   # Overrides the image tag whose default is the chart appVersion.
-#   tag: ""
-# imagePullSecrets: []
-# nameOverride: ""
-# fullnameOverride: ""
 serviceAccount:
-  # Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
   name: ""
-# podAnnotations: {}
-# podSecurityContext: {}
-# # fsGroup: 2000
 
-# securityContext: {}
-# # capabilities:
-# #   drop:
-# #   - ALL
-# # readOnlyRootFilesystem: true
-# # runAsNonRoot: true
-# # runAsUser: 1000
 service:
   type: ClusterIP
   port: 80
-# autoscaling:
-#   enabled: false
-#   minReplicas: 1
-#   maxReplicas: 100
-#   targetCPUUtilizationPercentage: 80
-#   # targetMemoryUtilizationPercentage: 80
-# nodeSelector: {}
-# tolerations: []
-# affinity: {}
+
 namespace: devtube
 ingress:
   enabled: true
@@ -47,6 +14,7 @@ ingress:
     enabled: true
     email: ronsh0111@gmail.com
     host: devtube.ddns.net
+
 mongodb:
   architecture: replicaset
   useStatefulSet: true
