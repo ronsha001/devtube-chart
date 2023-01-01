@@ -56,8 +56,8 @@ mongodb:
       cpu: 500m
       memory: 500Mi
     limits:
-      cpu: 1000m
-      memory: 1000Mi
+      cpu: 1500m
+      memory: 1.5Gi
 api:
   ingress:
     enabled: true
@@ -70,8 +70,8 @@ api:
       memory: 500Mi
       cpu: 500m
     limits:
-      memory: 1000Mi
-      cpu: 1000m
+      memory: 1.5Gi
+      cpu: 1500m
   autoscaling:
     enabled: true
     replicaCount: 2
@@ -86,8 +86,8 @@ client:
       memory: 500Mi
       cpu: 500m
     limits:
-      memory: 1000Mi
-      cpu: 1000m
+      memory: 1.5Gi
+      cpu: 1500m
   autoscaling:
     enabled: true
     replicaCount: 2
