@@ -2,11 +2,9 @@ serviceAccount:
   create: true
   annotations: {}
   name: ""
-
 service:
   type: ClusterIP
   port: 80
-
 namespace: devtube
 ingress:
   enabled: true
@@ -14,7 +12,6 @@ ingress:
     enabled: true
     email: ronsh0111@gmail.com
     host: devtube.ddns.net
-
 mongodb:
   architecture: replicaset
   useStatefulSet: true
@@ -30,7 +27,7 @@ api:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-api
-  image_tag: 1.3.6
+  image_tag: 1.3.7
   jwt_key: "example"
   port: 5000
   resources:
@@ -47,7 +44,7 @@ client:
   ingress:
     enabled: true
   image: devtube.azurecr.io/devtube-app
-  image_tag: 1.1.1
+  image_tag: 1.1.2
   port: 3000
   resources:
     requests:
