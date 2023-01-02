@@ -10,6 +10,7 @@ This chart will create the following services:
 - DevTube Frontend (React.js application)
 - DevTube API (Express.js API)
 - MongoDB
+
 For editing the chart values you can find `values.yaml` in `devtube` directory.
 There are 2 possible ways to apply this chart to your Kubernetes cluster, executing the `helm install <Release-Name> devtube/` command in root directory, this will apply the helm chart directly on your kubernetes cluster without any platform that can manage it, or you can execute the command `kubectl apply -f application.yaml` also in root directory, this will tell your ArgoCD to apply and manage all chart services such as Deployments, Statefulsets and more..
 
